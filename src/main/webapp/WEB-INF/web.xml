@@ -1,0 +1,14 @@
+<web-app>
+    <display-name>PAI servlet application</display-name>
+    <description>
+        ЩЕЕЕ НЕ ВМЕЕРЛА УУУУКРАЇНИ НІ СЛАВА НІ ВООООЛЯ
+    </description>
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>app.servlet.TestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+</web-app>
