@@ -1,4 +1,4 @@
-package app;
+package app.bean;
 
 import java.io.Serializable;
 
@@ -33,6 +33,7 @@ public class LoanBean implements Serializable {
     }
 
     public double getInstallment(){
+        if (count<1) throw new IllegalArgumentException();
         return (price*(rate/1200))/(1-(1/Math.pow(1+(rate/1200), count)));
     }
 }

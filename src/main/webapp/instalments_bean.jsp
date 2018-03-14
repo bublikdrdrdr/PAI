@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="loan" class="app.LoanBean" scope="session" />
+<jsp:useBean id="loan" class="app.bean.LoanBean" scope="session" />
 <jsp:setProperty name="loan" property="*" />
 <html>
 <head>
@@ -20,15 +20,15 @@
         <table>
             <tr>
                 <td>Kwota pożyczki:</td>
-                <td><input type="number" step="any" name="price"></td>
+                <td><input type="number" step="any" name="price" value="<%=loan.getPrice()%>"></td>
             </tr>
             <tr>
                 <td>Oprocentowanie:</td>
-                <td><input type="number" step="any" name="rate"></td>
+                <td><input type="number" step="any" name="rate" value="<%=loan.getRate()%>"></td>
             </tr>
             <tr>
                 <td>Liczba rat:</td>
-                <td><input type="number" name="count"></td>
+                <td><input type="number" name="count" value="<%=loan.getCount()%>"></td>
             </tr>
         </table>
         <input type="submit" value="Oblicz">
@@ -36,11 +36,12 @@
     <%
         if (request.getMethod().toUpperCase().equals("POST")) {
             try {
-    %><p class="bg-success">Miesięczna rata do spłaty: <%=loan.getInstallment()%></p><%
+                double result = loan.getInstallment();
+    %><p class="bg-success">Miesięczna rata do spłaty: <%=result%></p><%
             } catch (Exception e) {
                 String errorMessage;
                 if (e instanceof NullPointerException) errorMessage = "Jeden lub kilka parametrów są NULL"; else
-                if (e instanceof NumberFormatException) errorMessage = "Błędne dane!"; else
+                if (e instanceof IllegalArgumentException) errorMessage = "Błędne dane!"; else
                     errorMessage = e.getMessage();
     %><p class="bg-danger"><%=errorMessage%></p><%
             }
