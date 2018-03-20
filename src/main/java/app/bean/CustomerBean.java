@@ -1,13 +1,27 @@
 package app.bean;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "customer")
 public class CustomerBean implements Serializable {
 
+    @Id
+    @Column
+    @GeneratedValue
     private int id;
+
+    @Column(name = "name")
     private String fullname;
+
+    @Column
     private String phone;
+
+    @Column(unique = true)
     private String email;
+
+    @Column
     private String city;
 
     public CustomerBean() {

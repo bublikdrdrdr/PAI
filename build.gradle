@@ -19,4 +19,5 @@ dependencies {
     compile group: 'org.apache.derby', name: 'derby', version: '10.14.1.0'
     compile group: 'org.apache.derby', name: 'derbyclient', version: '10.14.1.0'
     compile group: 'javax.servlet.jsp', name: 'jsp-api', version: '2.1'
+    compile group: 'org.hibernate', name: 'hibernate-gradle-plugin', version: '5.0.12.Final'
 }
