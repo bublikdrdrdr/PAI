@@ -19,7 +19,25 @@ import java.util.List;
 public class HibernateListServlet extends HttpServlet {
 
     @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Object customerObject =session.getAttribute("customer");
+        session.setAttribute("addCustomerException", null);
+        Customers customers = new Customers();
+        try {
+            if (!(customerObject instanceof CustomerBean)) throw new IllegalArgumentException();
+            CustomerBean customer = (CustomerBean) customerObject;
+            customers.insert(customer);
+            response.sendRedirect("/list?hibernate");
+        } catch (Exception e) {
+            session.setAttribute("addCustomerException", e);
+            response.sendRedirect("add_customer.jsp?hibernate");
+        }
+    }
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getParameter("post")!=null) doPost(request, response); else
         showListInJsp(request, response);
     }
 
@@ -31,6 +49,6 @@ public class HibernateListServlet extends HttpServlet {
         } catch (Exception e) {
             session.setAttribute("exception", e);
         }
-        response.sendRedirect("list.jsp");
+        response.sendRedirect("list.jsp?hibernate");
     }
 }

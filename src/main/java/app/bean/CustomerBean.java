@@ -8,9 +8,8 @@ import java.io.Serializable;
 public class CustomerBean implements Serializable {
 
     @Id
-    @Column
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name = "name")
     private String fullname;
@@ -27,7 +26,7 @@ public class CustomerBean implements Serializable {
     public CustomerBean() {
     }
 
-    public CustomerBean(int id, String fullname, String phone, String email, String city) {
+    public CustomerBean(Integer id, String fullname, String phone, String email, String city) {
         this.id = id;
         this.fullname = fullname;
         this.phone = phone;
@@ -35,11 +34,11 @@ public class CustomerBean implements Serializable {
         this.city = city;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

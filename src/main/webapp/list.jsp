@@ -26,7 +26,7 @@
         if (!(listObject instanceof List)) throw new Exception("Lista jest null");
         List<CustomerBean> list = (List) listObject;
     %>
-    <a href="add_customer.jsp" class="bg-success">Add new customer</a>
+    <a href="add_customer.jsp<%=request.getParameterMap().containsKey("hibernate")?"?hibernate":""%>" class="bg-success">Add new customer</a>
 <div class="panel panel-primary">
     <table>
         <thead>

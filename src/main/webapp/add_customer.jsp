@@ -3,7 +3,7 @@
 <jsp:setProperty name="customer" property="*"/>
 <%
     if (request.getMethod().toUpperCase().equals("POST")){
-        response.sendRedirect("list?post");
+        response.sendRedirect(request.getParameterMap().containsKey("hibernate")?"hibernate_list?post":"list?post");
     }
 %>
 <html>
